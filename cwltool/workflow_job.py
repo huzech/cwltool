@@ -359,10 +359,11 @@ def match_types(
         if linkMerge == "merge_nested":
             sourceTypes.append(src.value)
         elif linkMerge == "merge_flattened":
-            if isinstance(src.value, MutableSequence):
-                sourceTypes.extend(src.value)
-            else:
-                sourceTypes.append(src.value)
+            if src.value != None:
+                if isinstance(src.value, MutableSequence):
+                    sourceTypes.extend(src.value)
+                else:
+                    sourceTypes.append(src.value)
         else:
             raise WorkflowException("Unrecognized linkMerge enum '%s'" % linkMerge)
         return True
